@@ -11,7 +11,7 @@ object ScoverageSbtPlugin extends AutoPlugin {
   val ScalacRuntimeArtifact = "scalac-scoverage-runtime"
   val ScalacPluginArtifact = "scalac-scoverage-plugin"
   // this should match the version defined in build.sbt
-  val DefaultScoverageVersion = "1.4.0"
+  val DefaultScoverageVersion = "1.4.1-SNAPSHOT"
   val autoImport = ScoverageKeys
   lazy val ScoveragePluginConfig = config("scoveragePlugin").hide
 
@@ -105,6 +105,8 @@ object ScoverageSbtPlugin extends AutoPlugin {
   private lazy val coverageReport0 = Def.task {
     val target = crossTarget.value
     val log = streams.value.log
+
+    println("THIS IS A CUSTOM VERSION OF SCOVERAGE")
 
     log.info(s"Waiting for measurement data to sync...")
     Thread.sleep(1000) // have noticed some delay in writing on windows, hacky but works
